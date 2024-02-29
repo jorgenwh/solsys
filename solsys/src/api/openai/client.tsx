@@ -3,6 +3,7 @@ import OpenAI from 'openai';
 class OpenAIClient {
   private client: any;
   private initialized: boolean = false;
+  private model: string = "gpt-3.5-turbo";
 
   constructor() { }
 
@@ -22,6 +23,27 @@ class OpenAIClient {
   destroy() {
     this.client = null;
     this.initialized = false;
+  }
+
+  setModel(model: string) {
+    this.model = model;
+  }
+
+  async prompt(messages: any): Promise<any> {
+    const response = this.client.chat.completions.create({
+      messages: messages,
+      model: this.model
+    });
+    return new Promise((resolve, reject) => {
+      if (!this.initialized) {
+        reject("OpenAI client not initialized");
+      }
+      response.then((result: any) => {
+        resolve(result);
+      }).catch((error: any) => {
+        reject("OpenAI prompt failed: " + error.message);
+      });
+    });
   }
 }
 

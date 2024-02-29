@@ -1,38 +1,87 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-family: 'Ubuntu';
 }
 
-.App-link {
-  color: #61dafb;
+.AppHeader {
+  background-color: purple;
+  min-height: 4vh;
+  max-height: 4vh;
+  display: flex;
+  flex-direction: row;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.AppHeader-buttons {
+  display: flex;
+  flex-direction: row;
+  margin: auto auto auto 0;
+}
+
+.AppHeader-buttons button {
+  text-align: center;
+  font-size: 1.25em;
+  cursor: pointer;
+  min-height: 4vh;
+  max-height: 4vh;
+  min-width: 10vw;
+  max-width: 10vw;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.AppHeader-chatButton {
+  background-color: pink;
+}
+
+.AppHeader-chatButton:hover {
+  background-color: blue;
+}
+
+.AppHeader-chatButton.clicked {
+  background-color: purple;
+}
+
+.AppHeader-imageButton {
+  background-color: pink;
+}
+
+.AppHeader-imageButton:hover {
+  background-color: blue;
+}
+
+.AppHeader-imageButton.clicked {
+  background-color: purple;
+}
+
+.AppHeader-settingsButton {
+  background-color: pink;
+}
+
+.AppHeader-settingsButton:hover {
+  background-color: blue;
+}
+
+.AppHeader-settingsButton.clicked {
+  background-color: purple;
+}
+
+.AppHeader-title {
+  font-size: 1em;
+  max-height: 4vh;
+  min-height: 4vh;
+  background-color: red;
+}
+
+.AppHeader-title h1 {
+  margin: auto;
+  color: blue;
+}
+
+.AppHeader-themeSwitch {
+  max-height: 4vh;
+  min-height: 4vh;
+  background-color: blue;
+  margin: auto 0 auto auto;
 }

@@ -1,0 +1,12 @@
+.Message {
+  border-radius: .5em;
+}
+
+.Message-label {
+  padding: .5em .5em 0 .5em;
+  font-weight: bold;
+}
+
+.Message-text {
+  padding: 0 .5em .5em .5em;
+}
