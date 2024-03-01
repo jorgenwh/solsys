@@ -6,6 +6,8 @@ import ChatTab from './chat/chatTab';
 import ImageTab from './image/imageTab';
 import SettingsTab from './settings/settingsTab';
 
+import OpenAIClient from './api/openai/client';
+
 
 interface AppHeaderProps {
   mode: 'chat' | 'image' | 'settings';
@@ -15,6 +17,15 @@ interface AppHeaderProps {
 }
 
 function AppHeader({ mode, setMode, theme, setTheme }: AppHeaderProps) {
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    }
+    else {
+      setTheme('light');
+    }
+  }
 
   return (
     <div className="AppHeader">
@@ -29,19 +40,19 @@ function AppHeader({ mode, setMode, theme, setTheme }: AppHeaderProps) {
       <div className="AppHeader-themeSwitch">
         <DarkModeSwitch
           checked={theme === 'dark'}
-          onChange={checked => {
-            if (checked) {
-              setTheme('light');
-            } else {
-              setTheme('dark');
-            }
-          }}
-          size={45}
+          onChange={toggleTheme}
+          size={40}
+          moonColor="black"
+          sunColor="sun"
         />
       </div>
     </div>
   );
 }
+
+
+const openAiClient = new OpenAIClient();
+openAiClient.initialize(process.env.REACT_APP_OPENAI_API_KEY || '');
 
 function App() {
   const [mode, setMode] = React.useState<'chat' | 'image' | 'settings'>('chat');
@@ -64,7 +75,12 @@ function App() {
 
   return (
     <div className="App">
-      <AppHeader mode={mode} setMode={setMode} theme={theme} setTheme={setTheme}/>
+      <AppHeader 
+        mode={mode} 
+        setMode={setMode} 
+        theme={theme} 
+        setTheme={setTheme}
+      />
       {content}
     </div>
   );

@@ -3,14 +3,24 @@
   display: flex;
   flex-direction: column;
   font-family: 'Ubuntu';
+  width: 100%;
 }
 
 .AppHeader {
-  background-color: purple;
-  min-height: 4vh;
-  max-height: 4vh;
+  min-height: 50px;
+  max-height: 50px;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  color: #E8E8E8; /* This will be the initial color and will change with animation */
+  background: linear-gradient(90deg, rgba(128,0,0,0.8), rgba(128,77,0,0.8), rgba(104,111,16,0.8), rgba(39,110,37,0.8), rgba(31,109,108,0.8), rgba(23,100,113,0.8), rgba(14,63,119,0.8), rgba(47,10,121,0.8), rgba(93,6,124,0.8), rgba(125,3,108,0.8), rgba(128,0,0,0.8));
+  animation: gradientBG 15s ease infinite, textColorChange 15s ease infinite; /* Added textColorChange animation */
+}
+
+@keyframes gradientBG {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 .AppHeader-buttons {
@@ -23,65 +33,65 @@
   text-align: center;
   font-size: 1.25em;
   cursor: pointer;
-  min-height: 4vh;
-  max-height: 4vh;
-  min-width: 10vw;
-  max-width: 10vw;
+  min-height: 50px;
+  max-height: 50px;
+  min-width: 110px;
+  max-width: 110px;
   font-weight: bold;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s; /* Added transition for color */
 }
 
 .AppHeader-chatButton {
-  background-color: pink;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px 0px #000000;
+  background-size: 400% 400%;
 }
 
+
 .AppHeader-chatButton:hover {
-  background-color: blue;
 }
 
 .AppHeader-chatButton.clicked {
-  background-color: purple;
 }
 
 .AppHeader-imageButton {
-  background-color: pink;
+  background-color: #ababab;
+  border-radius: 10px;
 }
 
 .AppHeader-imageButton:hover {
-  background-color: blue;
 }
 
 .AppHeader-imageButton.clicked {
-  background-color: purple;
 }
 
 .AppHeader-settingsButton {
-  background-color: pink;
+  background-color: #ababab;
+  border-radius: 10px;
 }
 
 .AppHeader-settingsButton:hover {
-  background-color: blue;
 }
 
 .AppHeader-settingsButton.clicked {
-  background-color: purple;
 }
 
 .AppHeader-title {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1em;
-  max-height: 4vh;
-  min-height: 4vh;
-  background-color: red;
+  max-height: 50px;
+  min-height: 50px;
 }
 
 .AppHeader-title h1 {
-  margin: auto;
-  color: blue;
+  font-weight: 400;
 }
 
 .AppHeader-themeSwitch {
-  max-height: 4vh;
-  min-height: 4vh;
-  background-color: blue;
-  margin: auto 0 auto auto;
+  max-height: 40px;
+  min-height: 40px;
+  margin: 5px 15px 10px auto;
 }
