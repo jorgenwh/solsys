@@ -11,11 +11,6 @@
   position: relative;
 }
 
-.Chat.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 .ChatLog-arrowDownCircle {
   position: absolute;
   z-index: 10;

@@ -61,13 +61,27 @@ function App() {
   let content;
   switch (mode) {
     case 'chat':
-      content = <ChatTab />;
+      content = (
+        <ChatTab
+          theme={theme}
+          openAiClient={openAiClient}
+         />
+      );
       break;
     case 'image':
-      content = <ImageTab/>;
+      content = (
+        <ImageTab
+          theme={theme}
+          openAiClient={openAiClient}
+        />
+      );
       break;
     case 'settings':
-      content = <SettingsTab />;
+      content = (
+        <SettingsTab 
+          theme={theme}
+        />
+      );
       break;
     default:
       content = <div>Invalid mode</div>;

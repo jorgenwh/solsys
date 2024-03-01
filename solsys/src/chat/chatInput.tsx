@@ -5,12 +5,11 @@ import './chatInput.css'
 interface ChatInputProps {
   prompt: string;
   setPrompt: (prompt: string) => void;
-  handleSend: () => void;
+  sendPrompt: () => void;
   loading: boolean;
-  disabled: boolean;
 }
 
-const ChatInput: FC<ChatInputProps> = ({ prompt, setPrompt, handleSend, loading, disabled }) => {
+const ChatInput: FC<ChatInputProps> = ({ prompt, setPrompt, sendPrompt, loading }) => {
 
   const promptTextareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -23,10 +22,10 @@ const ChatInput: FC<ChatInputProps> = ({ prompt, setPrompt, handleSend, loading,
   }, [prompt]);
 
   useEffect(() => {
-    if (!disabled && !loading && promptTextareaRef.current) {
+    if (!loading && promptTextareaRef.current) {
       promptTextareaRef.current.focus();
     }
-  }, [loading, disabled]);
+  }, [loading]);
 
   return (
     <div className={`ChatInput ${loading ? 'disabled' : ''}`}>
@@ -35,11 +34,11 @@ const ChatInput: FC<ChatInputProps> = ({ prompt, setPrompt, handleSend, loading,
         ref={promptTextareaRef}
         value={prompt}
         onChange={e => setPrompt(e.target.value)}
-        onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleSend()} 
+        onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendPrompt()} 
         placeholder=". . ."
         disabled={loading}
       />
-      <button onClick={handleSend}>{
+      <button onClick={sendPrompt}>{
         <SendHorizontal/>
       }</button>
     </div>

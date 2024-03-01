@@ -30,6 +30,8 @@ class OpenAIClient {
   }
 
   async prompt(messages: any): Promise<any> {
+    console.log("Prompting OpenAI:")
+    console.log(messages);
     const response = this.client.chat.completions.create({
       messages: messages,
       model: this.model

@@ -10,12 +10,11 @@ interface ChatProps {
   resetChat: () => void;
   prompt: string;
   setPrompt: (prompt: string) => void;
-  handleSend: () => void;
+  sendPrompt: () => void;
   loading: boolean;
-  disabled: boolean;
 }
 
-const Chat: FC<ChatProps> = ({ messages, resetChat, prompt, setPrompt, handleSend, loading, disabled }) => {
+const Chat: FC<ChatProps> = ({ messages, resetChat, prompt, setPrompt, sendPrompt, loading }) => {
   const [isAtBottom, setIsAtBottom] = useState(true);
 
   const scrollToBottom = () => {
@@ -63,8 +62,11 @@ const Chat: FC<ChatProps> = ({ messages, resetChat, prompt, setPrompt, handleSen
   }, [messages]);
 
   return (
-    <div className={`Chat ${disabled ? 'disabled' : ''}`}>
-      <ChatHeader resetChat={resetChat}/> 
+    <div className="Chat">
+      <ChatHeader 
+        resetChat={resetChat} 
+        loading={loading}
+      /> 
       {getArrowCircle()}
       <ChatLog 
         messages={messages}
@@ -72,9 +74,8 @@ const Chat: FC<ChatProps> = ({ messages, resetChat, prompt, setPrompt, handleSen
       <ChatInput 
         prompt={prompt}
         setPrompt={setPrompt}
-        handleSend={handleSend}
+        sendPrompt={sendPrompt}
         loading={loading}
-        disabled={disabled}
       />
     </div>
   );

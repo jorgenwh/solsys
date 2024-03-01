@@ -31,3 +31,8 @@
 .ChatHeader-resetButton:hover {
   background-color: #0056b3;
 }
+
+.ChatHeader-resetButton.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

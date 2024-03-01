@@ -4,13 +4,14 @@ import React from 'react';
 
 interface ChatHeaderProps {
   resetChat: () => void;
+  loading: boolean;
 }
 
-const ChatHeader: React.FC<ChatHeaderProps> = ({ resetChat }) => {
+function ChatHeader({ resetChat, loading }: ChatHeaderProps) {
   return (
     <div className="ChatHeader">
       <label className="Chat-label">Chat</label>
-      <button className="ChatHeader-resetButton" onClick={resetChat}>Reset {<RotateCcw/>}</button>
+      <button className={`ChatHeader-resetButton ${loading ? 'disabled' : ''}`} onClick={resetChat}>Reset {<RotateCcw/>}</button>
     </div>
   );
 }
