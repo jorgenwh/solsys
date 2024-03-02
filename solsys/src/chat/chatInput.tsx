@@ -9,7 +9,7 @@ interface ChatInputProps {
   loading: boolean;
 }
 
-const ChatInput: FC<ChatInputProps> = ({ prompt, setPrompt, sendPrompt, loading }) => {
+function ChatInput({ prompt, setPrompt, sendPrompt, loading }: ChatInputProps) {
 
   const promptTextareaRef = useRef<HTMLTextAreaElement>(null);
 

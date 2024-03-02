@@ -7,11 +7,11 @@ interface MessageProps {
   content: string;
 }
 
-const Message: React.FC<MessageProps> = ({ role, content }) => {
+function Message({ role, content }: MessageProps) {
 
   const messageStyle = {
     backgroundColor: role === 'system' ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 255, 0.035)',
-    textAlign: 'left' as const // Align text to the left
+    textAlign: 'left' as const
   };
 
   return (

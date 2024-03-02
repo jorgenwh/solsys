@@ -14,7 +14,7 @@ interface ChatProps {
   loading: boolean;
 }
 
-const Chat: FC<ChatProps> = ({ messages, resetChat, prompt, setPrompt, sendPrompt, loading }) => {
+function Chat({ messages, resetChat, prompt, setPrompt, sendPrompt, loading }: ChatProps) {
   const [isAtBottom, setIsAtBottom] = useState(true);
 
   const scrollToBottom = () => {

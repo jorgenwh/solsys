@@ -11,7 +11,7 @@ interface ChatLogProps {
   messages: MessageProps[];
 }
 
-const ChatLog: React.FC<ChatLogProps> = ({ messages }) => {
+function ChatLog({ messages }: ChatLogProps) {
   return (
     <div className="ChatLog">
       {messages.map((message, index) => (
