@@ -4,7 +4,7 @@ import { useState, useEffect, FC } from 'react';
 
 interface CheckboxComponentProps {
   theme: 'light' | 'dark';
-  modelName: string;
+  modelName: any;
   model: string;
   checked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

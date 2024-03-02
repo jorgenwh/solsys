@@ -10,7 +10,7 @@ interface ImageTabProps {
 }
 
 function ImageTab({ theme, openAiClient }: ImageTabProps) {
-  const [models, setModels] = useState<string[]>([]);
+  const [models, setModels] = useState<string[]>(['dall-e-3']);
   const [size, setSize] = useState<string>('1024x1024');
   const [quality, setQuality] = useState<string>('standard');
   const [prompt, setPrompt] = useState<string>('');

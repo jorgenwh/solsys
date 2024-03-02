@@ -1,7 +1,7 @@
 import './settings.css';
 import { useState, useEffect, FC } from 'react';
 
-import { OPENAI_IMAGE_MODELS } from '../../api/directory';
+import { OPENAI_CHAT_MODELS } from '../../api/directory';
 import ModelSelect from '../../components/modelSettings';
 
 
@@ -19,7 +19,7 @@ function Settings({ theme, models, setModels }: SettingsProps) {
         theme={theme}
         models={models}
         setModels={setModels}
-        modelSelection={OPENAI_IMAGE_MODELS}
+        modelSelection={OPENAI_CHAT_MODELS}
       />
     </div>
   );

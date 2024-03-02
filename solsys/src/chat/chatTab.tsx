@@ -1,6 +1,7 @@
 import { useState, useEffect, FC } from 'react';
 
 import OpenAIClient from '../api/openai/client';
+import Settings from './settings/settings';
 import Chat from './chat';
 
 
@@ -9,7 +10,8 @@ interface ChatTabProps {
   openAiClient: OpenAIClient;
 }
 
-function ChatTab({ theme: string, openAiClient: OpenAIClient }: ChatTabProps) {
+function ChatTab({ theme, openAiClient }: ChatTabProps) {
+  const [models, setModels] = useState<string[]>(['gpt-4-turbo-preview']);
   const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([]);
   const [prompt, setPrompt] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,7 +45,8 @@ function ChatTab({ theme: string, openAiClient: OpenAIClient }: ChatTabProps) {
     setLoading(true);
     setPrompt('');
 
-    const response = OpenAIClient.chatPrompt(newMessages, "gpt-3.5-turbo");
+    const model = models[0];
+    const response = openAiClient.chatPrompt(newMessages, model);
     response.then((response) => {
       setMessages(
         [...newMessages, { role: 'system', content: response.choices[0].message.content }]
@@ -54,6 +57,11 @@ function ChatTab({ theme: string, openAiClient: OpenAIClient }: ChatTabProps) {
 
   return (
     <div className="chatTab">
+      <Settings
+        theme={theme}
+        models={models}
+        setModels={setModels}
+      />
       <Chat 
         messages={messages}
         resetChat={resetChat}

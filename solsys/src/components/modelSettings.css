@@ -1,0 +1,15 @@
+.ModelSettings {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ModelSettings-label {
+  font-size: 2em;
+  font-weight: 300;
+}
+
+.ModelSettings-models {
+  display: flex;
+  flex-direction: column;
+}
