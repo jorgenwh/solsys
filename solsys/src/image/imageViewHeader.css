@@ -1,0 +1,38 @@
+.ImageViewHeader {
+  margin: 0 0 1em 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ImageView-label {
+  font-family: Ubuntu;
+  font-size: 1.5rem;
+  margin: 0 0 20px 10px;
+}
+
+.ImageViewHeader-resetButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: Ubuntu;
+  font-size: 1.2rem;
+  width: 95px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0;
+}
+
+.ImageViewHeader-resetButton:hover {
+  background-color: #0056b3;
+}
+
+.ImageViewHeader-resetButton.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

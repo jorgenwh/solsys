@@ -1,0 +1,37 @@
+.ImageViewDisplay {
+  max-width: 80vw;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.EmptyUrl {
+  min-height: 35vw;
+  min-width: 70vw;
+  max-height: 35vw;
+  max-width: 70vw;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.EmptyUrl h1 {
+  margin: auto;
+  font-weight: 300;
+}
+
+.Loading {
+  min-height: 35vw;
+  min-width: 70vw;
+  max-height: 35vw;
+  max-width: 70vw;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.Loading h1 {
+  margin: auto;
+  font-weight: 300;
+}

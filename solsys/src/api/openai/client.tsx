@@ -3,7 +3,6 @@ import OpenAI from 'openai';
 class OpenAIClient {
   private client: any;
   private initialized: boolean = false;
-  private model: string = "gpt-3.5-turbo";
 
   constructor() { }
 
@@ -20,26 +19,34 @@ class OpenAIClient {
     });
   }
 
-  destroy() {
-    this.client = null;
-    this.initialized = false;
-  }
-
-  setModel(model: string) {
-    this.model = model;
-  }
-
-  async prompt(messages: any): Promise<any> {
-    console.log("Prompting OpenAI:")
-    console.log(messages);
-    const response = this.client.chat.completions.create({
-      messages: messages,
-      model: this.model
-    });
+  async chatPrompt(messages: any, model: string): Promise<any> {
     return new Promise((resolve, reject) => {
       if (!this.initialized) {
         reject("OpenAI client not initialized");
       }
+      const response = this.client.chat.completions.create({
+        messages: messages,
+        model: model
+      });
+      response.then((result: any) => {
+        resolve(result);
+      }).catch((error: any) => {
+        reject("OpenAI prompt failed: " + error.message);
+      });
+    });
+  }
+
+  async imagePrompt(prompt: string, size: string, quality: string, model: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (!this.initialized) {
+        reject("OpenAI client not initialized");
+      }
+      const response = this.client.images.generate({
+        model: model,
+        prompt: prompt,
+        size: size,
+        quality: quality,
+      });
       response.then((result: any) => {
         resolve(result);
       }).catch((error: any) => {
@@ -48,5 +55,6 @@ class OpenAIClient {
     });
   }
 }
+
 
 export default OpenAIClient;

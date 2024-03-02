@@ -43,7 +43,7 @@ function ChatTab({ theme: string, openAiClient: OpenAIClient }: ChatTabProps) {
     setLoading(true);
     setPrompt('');
 
-    const response = OpenAIClient.prompt(newMessages);
+    const response = OpenAIClient.chatPrompt(newMessages, "gpt-3.5-turbo");
     response.then((response) => {
       setMessages(
         [...newMessages, { role: 'system', content: response.choices[0].message.content }]
