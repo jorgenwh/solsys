@@ -3,14 +3,13 @@ import { useState, useEffect, FC } from 'react';
 
 
 interface CheckboxComponentProps {
-  theme: 'light' | 'dark';
   modelName: any;
   model: string;
   checked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function CheckboxComponent({ theme, model, modelName, checked, onChange}: CheckboxComponentProps) {
+function CheckboxComponent({ model, modelName, checked, onChange}: CheckboxComponentProps) {
 
   return (
     <div className="Checkbox">

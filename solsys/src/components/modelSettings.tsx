@@ -5,13 +5,12 @@ import CheckboxComponent from './checkboxComponent';
 import SettingsRow from './settingsRow';
 
 interface ModelSettingsProps{
-  theme: 'light' | 'dark';
   models: string[];
   setModels: (models: string[]) => void;
   modelSelection: any;
 }
 
-function ModelSettings({ theme, models, setModels, modelSelection }: ModelSettingsProps) {
+function ModelSettings({ models, setModels, modelSelection }: ModelSettingsProps) {
 
   const onCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -28,9 +27,12 @@ function ModelSettings({ theme, models, setModels, modelSelection }: ModelSettin
       <div className="ModelSettings-models">
         {Object.entries(modelSelection).map(([model, modelName]) => {
           return (
-            <SettingsRow
-              theme={theme}
-            />
+            <CheckboxComponent
+              model={model}
+              modelName={modelName}
+              checked={models.includes(model)}
+              onChange={onCheckboxChange}
+            /> 
           );
         })}
       </div>

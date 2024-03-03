@@ -1,14 +1,7 @@
 .Chat {
   display: flex;
   flex-direction: column;
-  width: 75vw;
-  max-height: 75vh;
-  margin: 50px auto;
-  border: 2px solid #ddd;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  position: relative;
+  background-color: aquamarine;
 }
 
 .ChatLog-arrowDownCircle {

@@ -8,7 +8,6 @@ import ImageViewDisplay from './imageViewDisplay';
 import ImageViewInput from './imageViewInput';
 
 interface ImageViewProps {
-  theme: 'light' | 'dark';
   prompt: string;
   setPrompt: (prompt: string) => void;
   sendPrompt: () => void;
@@ -17,7 +16,7 @@ interface ImageViewProps {
   resetImageDisplay: () => void;
 }
 
-function ImageView({ theme, prompt, setPrompt, sendPrompt, url, loading, resetImageDisplay }: ImageViewProps) {
+function ImageView({ prompt, setPrompt, sendPrompt, url, loading, resetImageDisplay }: ImageViewProps) {
 
   return (
     <div className="imageView">
@@ -30,7 +29,6 @@ function ImageView({ theme, prompt, setPrompt, sendPrompt, url, loading, resetIm
         loading={loading}
       />
       <ImageViewInput
-        theme={theme}
         prompt={prompt}
         setPrompt={setPrompt}
         sendPrompt={sendPrompt}

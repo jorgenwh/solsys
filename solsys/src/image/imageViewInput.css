@@ -17,7 +17,6 @@
   resize: none;
   font-size: 1.2rem;
   overflow: hidden;
-  font-family: Ubuntu;
 }
 
 .ImageViewInput button {
@@ -28,7 +27,6 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
-  font-family: Ubuntu;
   font-size: 1rem;
 }
 

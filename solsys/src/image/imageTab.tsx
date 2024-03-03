@@ -5,11 +5,10 @@ import Settings from './settings/settings';
 import ImageView from './imageView';
 
 interface ImageTabProps {
-  theme: 'light' | 'dark';
   openAiClient: OpenAIClient;
 }
 
-function ImageTab({ theme, openAiClient }: ImageTabProps) {
+function ImageTab({ openAiClient }: ImageTabProps) {
   const [models, setModels] = useState<string[]>(['dall-e-3']);
   const [size, setSize] = useState<string>('1024x1024');
   const [quality, setQuality] = useState<string>('standard');
@@ -23,8 +22,6 @@ function ImageTab({ theme, openAiClient }: ImageTabProps) {
   }
 
   const sendPrompt = () => {
-    console.log("Prompting with prompt: ", prompt + " and size: " + size + " and quality: " + quality + " and model: " + models[0]);
-
     const trimmedPrompt = prompt.trim();
     if (trimmedPrompt === '') {
       return;
@@ -36,7 +33,6 @@ function ImageTab({ theme, openAiClient }: ImageTabProps) {
     const model = models[0];
     const response = openAiClient.imagePrompt(trimmedPrompt, size, quality, model);
     response.then((response) => {
-      console.log(response);
       setUrl(response.data[0].url);
       setLoading(false);
     });
@@ -44,19 +40,17 @@ function ImageTab({ theme, openAiClient }: ImageTabProps) {
 
   return (
     <div className="imageTab">
-      <Settings
-        theme={theme}
-        models={models}
-        setModels={setModels}
-      />
       <ImageView 
-        theme={theme}
         prompt={prompt}
         setPrompt={setPrompt}
         sendPrompt={sendPrompt}
         url={url}
         loading={loading}
         resetImageDisplay={resetImageDisplay}
+      />
+      <Settings
+        models={models}
+        setModels={setModels}
       />
     </div>
   );

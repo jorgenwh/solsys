@@ -6,11 +6,10 @@ import Chat from './chat';
 
 
 interface ChatTabProps {
-  theme: 'light' | 'dark';
   openAiClient: OpenAIClient;
 }
 
-function ChatTab({ theme, openAiClient }: ChatTabProps) {
+function ChatTab({ openAiClient }: ChatTabProps) {
   const [models, setModels] = useState<string[]>(['gpt-4-turbo-preview']);
   const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([]);
   const [prompt, setPrompt] = useState<string>('');
@@ -56,12 +55,7 @@ function ChatTab({ theme, openAiClient }: ChatTabProps) {
   }
 
   return (
-    <div className="chatTab">
-      <Settings
-        theme={theme}
-        models={models}
-        setModels={setModels}
-      />
+    <div className="ChatTab">
       <Chat 
         messages={messages}
         resetChat={resetChat}

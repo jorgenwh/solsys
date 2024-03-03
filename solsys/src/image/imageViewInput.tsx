@@ -3,7 +3,6 @@ import { SendHorizontal } from 'lucide-react';
 import './imageViewInput.css'
 
 interface ImageViewInputProps {
-  theme: 'light' | 'dark';
   prompt: string;
   setPrompt: (prompt: string) => void;
   sendPrompt: () => void;
@@ -11,7 +10,7 @@ interface ImageViewInputProps {
 }
 
 function ImageViewInput(
-  { theme, prompt, setPrompt, sendPrompt, loading }
+  { prompt, setPrompt, sendPrompt, loading }
   : ImageViewInputProps
 ) {
 

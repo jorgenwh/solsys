@@ -38,9 +38,9 @@ function ChatInput({ prompt, setPrompt, sendPrompt, loading }: ChatInputProps) {
         placeholder=". . ."
         disabled={loading}
       />
-      <button onClick={sendPrompt}>{
-        <SendHorizontal/>
-      }</button>
+      <button onClick={sendPrompt}>
+        { <SendHorizontal/> }
+      </button>
     </div>
   );
 }

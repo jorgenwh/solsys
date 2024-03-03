@@ -1,97 +1,85 @@
+body, html { 
+  overflow-x: hidden; 
+  overflow-y: auto;
+}
+
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
-  font-family: 'Ubuntu';
-  width: 100%;
+  font-family: 'Roboto Mono', monospace;
+  min-height: 100vh;
+  min-width: 100vw;
+  background: linear-gradient(135deg, rgb(11, 24, 30) 0%, rgb(26, 44, 52) 50%, rgb(54, 67, 75) 100%);
 }
 
 .AppHeader {
-  min-height: 50px;
-  max-height: 50px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.AppHeader-buttons-container {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  color: #E8E8E8; /* This will be the initial color and will change with animation */
-  background: linear-gradient(90deg, rgba(128,0,0,0.8), rgba(128,77,0,0.8), rgba(104,111,16,0.8), rgba(39,110,37,0.8), rgba(31,109,108,0.8), rgba(23,100,113,0.8), rgba(14,63,119,0.8), rgba(47,10,121,0.8), rgba(93,6,124,0.8), rgba(125,3,108,0.8), rgba(128,0,0,0.8));
-  animation: gradientBG 15s ease infinite, textColorChange 15s ease infinite; /* Added textColorChange animation */
+  justify-content: space-evenly;
+  margin: .5em 0 0 0;
 }
 
-@keyframes gradientBG {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-.AppHeader-buttons {
-  display: flex;
-  flex-direction: row;
-  margin: auto auto auto 0;
-}
-
-.AppHeader-buttons button {
+.AppHeader-buttons-container button {
+  font-family: 'Roboto Mono', monospace;
   text-align: center;
-  font-size: 1.25em;
+  font-size: 1em;
+  color: rgba(221, 244, 255, 0.75);
   cursor: pointer;
-  min-height: 50px;
-  max-height: 50px;
-  min-width: 110px;
-  max-width: 110px;
-  font-weight: bold;
-  transition: background-color 0.2s, color 0.2s; /* Added transition for color */
+  min-height: 5.5vh;
+  max-height: 5.5vh;
+  min-width: 30vw;
+  max-width: 30vw;
+  transition: background-color 0.2s, color 0.2s, background 0.2s, border-radius 0.5s;
+  border: none;
+  background: inherit;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 2em;
 }
 
-.AppHeader-chatButton {
-  border-radius: 15px;
-  box-shadow: 0px 0px 5px 0px #000000;
-  background-size: 400% 400%;
+.AppHeader-buttons-container button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-
-.AppHeader-chatButton:hover {
-}
-
-.AppHeader-chatButton.clicked {
-}
-
-.AppHeader-imageButton {
-  background-color: #ababab;
-  border-radius: 10px;
-}
-
-.AppHeader-imageButton:hover {
-}
-
-.AppHeader-imageButton.clicked {
-}
-
-.AppHeader-settingsButton {
-  background-color: #ababab;
-  border-radius: 10px;
-}
-
-.AppHeader-settingsButton:hover {
-}
-
-.AppHeader-settingsButton.clicked {
+.AppHeader-buttons-container button.clicked {
+  border-radius: 0;
+  background-color: inherit;
 }
 
 .AppHeader-title {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 1em;
-  max-height: 50px;
-  min-height: 50px;
-}
-
-.AppHeader-title h1 {
   font-weight: 400;
+  font-size: 1.5em;
+  color: rgba(221, 244, 255, 0.75);
+  margin: .5em auto 0 auto;
 }
 
-.AppHeader-themeSwitch {
-  max-height: 40px;
-  min-height: 40px;
-  margin: 5px 15px 10px auto;
+@media screen and (min-width: 640px) {
+  .App {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .App {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .App {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .App {
+    font-size: 0.8em;
+  }
 }

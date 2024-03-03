@@ -1,10 +1,9 @@
 import { useState, useEffect, FC } from 'react';
 
 interface SettingsTabProps {
-  theme: 'light' | 'dark';
 }
 
-function SettingsTab({ theme: string }: SettingsTabProps) {
+function SettingsTab({ }: SettingsTabProps) {
 
   return (
     <div className="settingsTab">

@@ -1,6 +1,8 @@
 .ChatInput {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  margin: auto auto 0 auto;
+  background-color: white;
 }
 
 .ChatInput.disabled {
@@ -9,15 +11,18 @@
 }
 
 .ChatInput-textarea {
-  flex: 1;
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  margin-right: 10px;
+  border: 1px solid rgba(221, 244, 255, 0.75);
+  color: rgba(221, 244, 255, 0.75);
+  border-radius: .5em;
   resize: none;
-  font-size: 1.2rem;
+  font-size: 1.2em;
   overflow: hidden;
-  font-family: Ubuntu;
+  background-color: inherit;
+  width: 75vw;
+  height: 15vh;
+  
+  margin: auto auto 0 auto;
+  padding: 5px;
 }
 
 .ChatInput button {
@@ -28,7 +33,6 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
-  font-family: Ubuntu;
   font-size: 1rem;
 }
 
