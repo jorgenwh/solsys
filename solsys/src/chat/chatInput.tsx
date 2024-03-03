@@ -11,36 +11,50 @@ interface ChatInputProps {
 
 function ChatInput({ prompt, setPrompt, sendPrompt, loading }: ChatInputProps) {
 
-  const promptTextareaRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (promptTextareaRef.current) {
-      promptTextareaRef.current.style.height = 'auto';
-      let newHeight = promptTextareaRef.current.scrollHeight - parseInt(getComputedStyle(promptTextareaRef.current).paddingTop) - parseInt(getComputedStyle(promptTextareaRef.current).paddingBottom);
-      promptTextareaRef.current.style.height = `${newHeight}px`;
+  const clearContent = () => {
+    if (inputRef.current) {
+      inputRef.current.textContent = '';
     }
-  }, [prompt]);
+  }
 
-  useEffect(() => {
-    if (!loading && promptTextareaRef.current) {
-      promptTextareaRef.current.focus();
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendPrompt();
+      clearContent();
     }
-  }, [loading]);
+  }
+
+  const createTextArea = () => {
+    return (
+      <div className="ChatInput-textarea">
+        <div className="ChatInput-textarea-message-wrapper">
+          <div 
+            ref={inputRef}
+            className="ChatInput-textarea-message-text"
+            contentEditable
+            onInput={(e) => setPrompt(e.currentTarget.textContent || '')}
+            onKeyDown={onKeyDown} 
+          ></div>
+        </div>
+      </div>
+    );
+  }
+
+  const createSendButton = () => {
+    return (
+      <button onClick={() => { sendPrompt(); clearContent(); }}>
+        { <SendHorizontal/> }
+      </button>
+    );
+  }
 
   return (
     <div className={`ChatInput ${loading ? 'disabled' : ''}`}>
-      <textarea
-        className="ChatInput-textarea"
-        ref={promptTextareaRef}
-        value={prompt}
-        onChange={e => setPrompt(e.target.value)}
-        onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendPrompt()} 
-        placeholder=". . ."
-        disabled={loading}
-      />
-      <button onClick={sendPrompt}>
-        { <SendHorizontal/> }
-      </button>
+      {createTextArea()}
+      {createSendButton()}
     </div>
   );
 }

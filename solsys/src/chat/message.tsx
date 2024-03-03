@@ -9,14 +9,9 @@ interface MessageProps {
 
 function Message({ role, content }: MessageProps) {
 
-  const messageStyle = {
-    backgroundColor: role === 'system' ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 255, 0.035)',
-    textAlign: 'left' as const
-  };
-
   return (
-    <div className="Message" style={messageStyle}>
-      <div className="Message-label">{role === 'system' ? 'AI' : 'YOU'}</div>
+    <div className={`Message ${role === 'user' ? 'is-own' : ''}`}>
+      <div className="Message-label">{role === 'system' ? 'GPT' : 'YOU'}</div>
       <div className="Message-text"><ReactMarkdown className="Message-text-mk">{content}</ReactMarkdown></div>
     </div>
   );

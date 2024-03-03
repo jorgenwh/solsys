@@ -1,7 +1,6 @@
 .Chat {
   display: flex;
   flex-direction: column;
-  background-color: aquamarine;
 }
 
 .ChatLog-arrowDownCircle {

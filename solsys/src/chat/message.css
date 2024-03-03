@@ -1,12 +1,21 @@
 .Message {
-  border-radius: .5em;
+  text-align: left;
+  margin: 0 auto auto .5em;
+}
+
+.Message.is-own {
+  text-align: right;
+  margin: 0 .5em auto auto;
 }
 
 .Message-label {
-  padding: .5em .5em 0 .5em;
   font-weight: bold;
+  color: rgba(243, 250, 255, 0.75);
+  margin: 0 auto -.65em auto;
 }
 
 .Message-text {
-  padding: 0 .5em .5em .5em;
+  color: rgba(221, 244, 255, 0.75);
+  margin: 0 auto 0 auto;
+  font-size: .8em;
 }
