@@ -7,6 +7,9 @@ import ImageTab from './image/imageTab';
 import SettingsTab from './settings/settingsTab';
 
 import OpenAIClient from './api/openai/client';
+import AnthropicClient from './api/anthropic/client';
+import Anthropic from "@anthropic-ai/sdk";
+
 
 
 interface AppHeaderProps {
@@ -31,6 +34,8 @@ function AppHeader({ mode, setMode }: AppHeaderProps) {
 
 const openAiClient = new OpenAIClient();
 openAiClient.initialize(process.env.REACT_APP_OPENAI_API_KEY || '');
+const anthropicClient = new AnthropicClient();
+anthropicClient.initialize(process.env.REACT_APP_ANTHROPIC_API_KEY || '');
 
 function App() {
   const [mode, setMode] = React.useState<'chat' | 'image' | 'settings'>('chat');
@@ -41,6 +46,7 @@ function App() {
       content = (
         <ChatTab
           openAiClient={openAiClient}
+          anthropicClient={anthropicClient}
          />
       );
       break;

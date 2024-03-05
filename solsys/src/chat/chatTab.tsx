@@ -1,15 +1,17 @@
 import { useState, useEffect, FC } from 'react';
 
 import OpenAIClient from '../api/openai/client';
+import AnthropicClient from '../api/anthropic/client';
 import Settings from './settings/settings';
 import Chat from './chat';
 
 
 interface ChatTabProps {
   openAiClient: OpenAIClient;
+  anthropicClient: AnthropicClient;
 }
 
-function ChatTab({ openAiClient }: ChatTabProps) {
+function ChatTab({ openAiClient, anthropicClient }: ChatTabProps) {
   const [models, setModels] = useState<string[]>(['gpt-4-turbo-preview']);
   const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([]);
   const [prompt, setPrompt] = useState<string>('');
@@ -44,8 +46,8 @@ function ChatTab({ openAiClient }: ChatTabProps) {
     setLoading(true);
     setPrompt('');
 
-    const model = models[0];
-    const response = openAiClient.chatPrompt(newMessages, model);
+    //const model = models[0];
+    const response = anthropicClient.chatPrompt(newMessages, 'claude-3-opus-20240229');
     response.then((response) => {
       setMessages(
         [...newMessages, { role: 'system', content: response.choices[0].message.content }]
