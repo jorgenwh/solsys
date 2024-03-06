@@ -1,0 +1,63 @@
+.ChatInput {
+  display: flex;
+  flex-direction: row;
+  margin: auto auto 0 auto;
+  align-items: center;
+}
+
+.ChatInput.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ChatInput-textarea {
+  width: 100%;
+  margin: auto 0 auto 10px;
+}
+
+.ChatInput-textarea-message-wrapper {
+  width: 75vw;
+  border: 1px solid rgba(221, 244, 255, 0.75);
+  border-radius: 8px;
+  max-height: 145px;
+  padding: 2px 5px;
+  text-align: start;
+}
+
+.ChatInput-textarea-message-text {
+  min-height: 1em;
+  width: 100%;
+  outline: none;
+  overflow: hidden;
+  color: rgba(221, 244, 255, 0.75);
+}
+
+.ChatInput button {
+  background: inherit;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgba(221, 244, 255, 0.75);
+  transition: background-color 0.2s;
+
+  font-size: 1em;
+
+  max-height: 1.75em;
+  min-height: 1.75em;
+  max-width: 12.5vw;
+  min-width: 12.5vw;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  padding: 5px 10px;
+  margin: auto 10px auto 10px;
+
+  align-items: center;
+  display: flex;
+  -ms-flex-align: center;
+}
+
+.ChatInput button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}

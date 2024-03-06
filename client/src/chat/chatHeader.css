@@ -1,0 +1,46 @@
+.ChatHeader {
+  display: flex;
+  flex-direction: column;
+  margin: 0 .5em .5em .5em;
+}
+
+.Chat-label {
+  font-size: .75em;
+  color: rgba(221, 244, 255, 0.75);
+}
+
+.ChatHeader-resetButton {
+  color: rgba(221, 244, 255, 0.75);
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: background-color 0.2s;
+
+  border: none;
+  border-radius: 2em;
+
+  cursor: pointer;
+
+  font-family: 'Roboto Mono', monospace;
+  text-align: center;
+  font-size: 1em;
+
+  min-width: 30vw;
+  max-width: 30vw;
+  min-height: 5.5vh;
+  max-height: 5.5vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  padding: 0;
+  margin: .5em 0 auto auto;
+}
+
+.ChatHeader-resetButton:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.ChatHeader-resetButton.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

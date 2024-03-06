@@ -1,0 +1,11 @@
+.imageView {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  max-height: 80vh;
+  min-height: 45vh;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 6vh auto auto 3vw;
+}

@@ -1,0 +1,35 @@
+.ImageViewInput {
+  display: flex;
+  align-items: center;
+}
+
+.ImageViewInput.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ImageViewInput-textarea {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px;
+  resize: none;
+  font-size: 1.2rem;
+  overflow: hidden;
+}
+
+.ImageViewInput button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1rem;
+}
+
+.ImageViewInput button:hover {
+  background-color: #0056b3;
+}

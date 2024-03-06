@@ -1,0 +1,10 @@
+.ChatLog {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  overflow-y: auto;
+  min-height: 60vh;
+  max-height: 60vh;
+  margin: .5em auto auto auto;
+}

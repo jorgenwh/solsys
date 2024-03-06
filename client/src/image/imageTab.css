@@ -1,0 +1,4 @@
+.imageTab {
+  display: flex;
+  flex-direction: row;
+}

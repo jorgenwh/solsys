@@ -1,0 +1,22 @@
+.Chat {
+  display: flex;
+  flex-direction: column;
+}
+
+.ChatLog-arrowDownCircle {
+  position: absolute;
+  z-index: 10;
+  opacity: 0.75;
+  bottom: 8vh;
+  right: 38vw;
+  background-color: rgb(131, 155, 192);
+  transition: background-color 0.3s;
+  transition: scale 0.3s;
+  scale: 1.0;
+  border-radius: 25%;
+}
+
+.ChatLog-arrowDownCircle:hover {
+  background-color: rgb(105, 126, 158);
+  scale: 1.25;
+}
