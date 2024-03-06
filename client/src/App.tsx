@@ -1,14 +1,10 @@
 import React from 'react';
 import './App.css';
-import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
+import ApiHandler from './api/apiHandler';
 import ChatTab from './chat/chatTab';
 import ImageTab from './image/imageTab';
 import SettingsTab from './settings/settingsTab';
-
-import OpenAIClient from './api/openai/client';
-import AnthropicClient from './api/anthropic/client';
-
 
 
 interface AppHeaderProps {
@@ -31,11 +27,8 @@ function AppHeader({ mode, setMode }: AppHeaderProps) {
 }
 
 
-export const runtime = "edge";
-const openAiClient = new OpenAIClient();
-openAiClient.initialize(process.env.REACT_APP_OPENAI_API_KEY || '');
-const anthropicClient = new AnthropicClient();
-anthropicClient.initialize(process.env.REACT_APP_ANTHROPIC_API_KEY || '');
+const apiHandler = new ApiHandler();
+
 
 function App() {
   const [mode, setMode] = React.useState<'chat' | 'image' | 'settings'>('chat');
@@ -45,15 +38,14 @@ function App() {
     case 'chat':
       content = (
         <ChatTab
-          openAiClient={openAiClient}
-          anthropicClient={anthropicClient}
+          apiHandler={apiHandler}
          />
       );
       break;
     case 'image':
       content = (
         <ImageTab
-          openAiClient={openAiClient}
+          apiHandler={apiHandler}
         />
       );
       break;

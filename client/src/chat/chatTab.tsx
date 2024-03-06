@@ -1,17 +1,15 @@
 import { useState, useEffect, FC } from 'react';
 
-import OpenAIClient from '../api/openai/client';
-import AnthropicClient from '../api/anthropic/client';
 import Settings from './settings/settings';
 import Chat from './chat';
+import ApiHandler from '../api/apiHandler';
 
 
 interface ChatTabProps {
-  openAiClient: OpenAIClient;
-  anthropicClient: AnthropicClient;
+  apiHandler: ApiHandler;
 }
 
-function ChatTab({ openAiClient, anthropicClient }: ChatTabProps) {
+function ChatTab({ apiHandler }: ChatTabProps) {
   const [models, setModels] = useState<string[]>(['gpt-4-turbo-preview']);
   const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([]);
   const [prompt, setPrompt] = useState<string>('');
@@ -36,6 +34,7 @@ function ChatTab({ openAiClient, anthropicClient }: ChatTabProps) {
   }
 
   const sendPrompt = () => {
+    console.log("hey");
     const trimmedPrompt = prompt.trim();
     if (trimmedPrompt === '') {
       return;
@@ -46,11 +45,16 @@ function ChatTab({ openAiClient, anthropicClient }: ChatTabProps) {
     setLoading(true);
     setPrompt('');
 
-    //const model = models[0];
-    const response = anthropicClient.chatPrompt(newMessages, 'claude-3-opus-20240229');
-    response.then((response) => {
+    const response = apiHandler.promptChat(trimmedPrompt, models, [newMessages]);
+    response.then((responses) => {
       setMessages(
-        [...newMessages, { role: 'system', content: response.choices[0].message.content }]
+        [...newMessages, { role: 'assistant', content: responses[0] }]
+      );
+      setLoading(false);
+    }).catch((error) => {
+      console.error(error);
+      setMessages(
+        [...newMessages, { role: 'assistant', content: error }]
       );
       setLoading(false);
     });

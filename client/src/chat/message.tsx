@@ -11,7 +11,7 @@ function Message({ role, content }: MessageProps) {
 
   return (
     <div className={`Message ${role === 'user' ? 'is-own' : ''}`}>
-      <div className="Message-label">{role === 'system' ? 'GPT' : 'YOU'}</div>
+      <div className="Message-label">{role === 'assistant' ? 'GPT' : 'YOU'}</div>
       <div className="Message-text"><ReactMarkdown className="Message-text-mk">{content}</ReactMarkdown></div>
     </div>
   );

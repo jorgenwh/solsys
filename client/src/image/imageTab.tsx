@@ -1,14 +1,14 @@
 import { useState, useEffect, FC } from 'react';
 
-import OpenAIClient from '../api/openai/client';
+import ApiHandler from '../api/apiHandler';
 import Settings from './settings/settings';
 import ImageView from './imageView';
 
 interface ImageTabProps {
-  openAiClient: OpenAIClient;
+  apiHandler: ApiHandler;
 }
 
-function ImageTab({ openAiClient }: ImageTabProps) {
+function ImageTab({ apiHandler }: ImageTabProps) {
   const [models, setModels] = useState<string[]>(['dall-e-3']);
   const [size, setSize] = useState<string>('1024x1024');
   const [quality, setQuality] = useState<string>('standard');
@@ -30,12 +30,7 @@ function ImageTab({ openAiClient }: ImageTabProps) {
     setLoading(true);
     setPrompt('');
 
-    const model = models[0];
-    const response = openAiClient.imagePrompt(trimmedPrompt, size, quality, model);
-    response.then((response) => {
-      setUrl(response.data[0].url);
-      setLoading(false);
-    });
+    //
   }
 
   return (

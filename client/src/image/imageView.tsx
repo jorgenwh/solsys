@@ -1,8 +1,6 @@
 import './imageView.css';
 import React from 'react';
 
-import OpenAIClient from '../api/openai/client';
-
 import ImageViewHeader from './imageViewHeader';
 import ImageViewDisplay from './imageViewDisplay';
 import ImageViewInput from './imageViewInput';
