@@ -8,7 +8,6 @@ import SettingsTab from './settings/settingsTab';
 
 import OpenAIClient from './api/openai/client';
 import AnthropicClient from './api/anthropic/client';
-import Anthropic from "@anthropic-ai/sdk";
 
 
 
@@ -32,6 +31,7 @@ function AppHeader({ mode, setMode }: AppHeaderProps) {
 }
 
 
+export const runtime = "edge";
 const openAiClient = new OpenAIClient();
 openAiClient.initialize(process.env.REACT_APP_OPENAI_API_KEY || '');
 const anthropicClient = new AnthropicClient();
