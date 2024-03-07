@@ -4,22 +4,23 @@ class ApiHandler {
 
   constructor() { }
 
-  async promptChat(prompt: any, modelsList: any, messagesList: any): Promise<any> {
+  async chatPrompt(model: string, messages: any): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      const response = fetch(this._baseUrl + "prompt_chat/", {
+      const response = fetch(this._baseUrl + "chat_prompt/", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          prompt: prompt
+          model: model,
+          messages: messages,
         })
       });
       response.then(response => response.json()).then((data) => {
-        console.log(data);
-        resolve(data);
+        console.log(data.response);
+        resolve(data.response);
       }).catch((error) => {
-        reject(error);
+        reject(error.response);
       });
     });
   }

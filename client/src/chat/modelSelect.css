@@ -1,0 +1,16 @@
+.ModelSelect {
+
+}
+
+.ModelSelect-label {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.4rem;
+  margin: auto;
+}
+
+.ModelSelect-select{
+  padding: 5px 10px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.2rem;
+  margin: auto auto auto 20px;
+}

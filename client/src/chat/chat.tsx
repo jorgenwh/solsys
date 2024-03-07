@@ -6,15 +6,28 @@ import { ChevronsDown } from 'lucide-react';
 import ChatHeader from './chatHeader';
 
 interface ChatProps {
-  messages: any[]; // Consider specifying a more detailed type for messages
-  resetChat: () => void;
+  modelNameTrail: string[];
+  messages: any[];
   prompt: string;
+  model: string;
+  loading: boolean;
+  resetChat: () => void;
   setPrompt: (prompt: string) => void;
   sendPrompt: () => void;
-  loading: boolean;
+  setModel: (model: string) => void;
 }
 
-function Chat({ messages, resetChat, prompt, setPrompt, sendPrompt, loading }: ChatProps) {
+function Chat({ 
+  modelNameTrail, 
+  messages, 
+  prompt, 
+  model, 
+  loading, 
+  resetChat, 
+  setPrompt, 
+  sendPrompt, 
+  setModel 
+}: ChatProps) {
   const [isAtBottom, setIsAtBottom] = useState(true);
 
   const scrollToBottom = () => {
@@ -64,15 +77,17 @@ function Chat({ messages, resetChat, prompt, setPrompt, sendPrompt, loading }: C
   return (
     <div className="Chat">
       <ChatHeader 
+        model={model}
+        setModel={setModel}
         resetChat={resetChat} 
         loading={loading}
       /> 
       {getArrowCircle()}
       <ChatLog 
+        modelNameTrail={modelNameTrail}
         messages={messages}
       />
       <ChatInput 
-        prompt={prompt}
         setPrompt={setPrompt}
         sendPrompt={sendPrompt}
         loading={loading}

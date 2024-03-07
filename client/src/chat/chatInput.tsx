@@ -3,13 +3,12 @@ import { SendHorizontal } from 'lucide-react';
 import './chatInput.css'
 
 interface ChatInputProps {
-  prompt: string;
   setPrompt: (prompt: string) => void;
   sendPrompt: () => void;
   loading: boolean;
 }
 
-function ChatInput({ prompt, setPrompt, sendPrompt, loading }: ChatInputProps) {
+function ChatInput({ setPrompt, sendPrompt, loading }: ChatInputProps) {
 
   const inputRef = useRef<HTMLDivElement>(null);
 

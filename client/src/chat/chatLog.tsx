@@ -8,14 +8,15 @@ interface MessageProps {
 }
 
 interface ChatLogProps {
+  modelNameTrail: string[];
   messages: MessageProps[];
 }
 
-function ChatLog({ messages }: ChatLogProps) {
+function ChatLog({ modelNameTrail, messages }: ChatLogProps) {
   return (
     <div className="ChatLog">
       {messages.map((message, index) => (
-        <Message key={index} role={message.role} content={message.content} />
+        <Message key={index} isOwn={index % 2 == 0} label={modelNameTrail[index]} content={message.content} />
       ))}
       <div id="chatLogBottom"></div>
     </div>

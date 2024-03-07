@@ -1,58 +1,49 @@
 import { useState, useEffect, FC } from 'react';
 
-import Settings from './settings/settings';
 import Chat from './chat';
 import ApiHandler from '../api/apiHandler';
-
+import { modelNameMap } from './modelOptions';
 
 interface ChatTabProps {
   apiHandler: ApiHandler;
 }
 
 function ChatTab({ apiHandler }: ChatTabProps) {
-  const [models, setModels] = useState<string[]>(['gpt-4-turbo-preview']);
+  const [model, setModel] = useState<string>('claude-3-opus-20240229');
+  const [modelNameTrail, setModelNameTrail] = useState<string[]>([]);
   const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([]);
   const [prompt, setPrompt] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
   const resetChat = () => {
-    const chatElement = document.querySelector('.Chat') as HTMLElement;
-    if (chatElement) {
-      const originalHeight = chatElement.offsetHeight;
-      chatElement.style.height = `${originalHeight - 45}px`;
-      void window.getComputedStyle(chatElement).height;
-      chatElement.style.transition = 'height 0.5s';
-      chatElement.style.height = '173px';
-      setTimeout(() => {
-        setMessages([]);
-        setPrompt('');
-        setLoading(false);
-        chatElement.style.removeProperty('height');
-        chatElement.style.removeProperty('transition');
-      }, 500);
-    }
+    setModelNameTrail([]);
+    setMessages([]);
+    setPrompt('');
+    setLoading(false);
   }
 
   const sendPrompt = () => {
-    console.log("hey");
     const trimmedPrompt = prompt.trim();
     if (trimmedPrompt === '') {
       return;
     }
+    const modelName = modelNameMap[model];
+
     const newMessages = [...messages, { role: 'user', content: trimmedPrompt }];
     setMessages(newMessages);
 
     setLoading(true);
     setPrompt('');
 
-    const response = apiHandler.promptChat(trimmedPrompt, models, [newMessages]);
+    const response = apiHandler.chatPrompt(model, newMessages);
     response.then((responses) => {
+      setModelNameTrail([...modelNameTrail, modelName, modelName]);
       setMessages(
-        [...newMessages, { role: 'assistant', content: responses[0] }]
+        [...newMessages, { role: 'assistant', content: responses }]
       );
       setLoading(false);
     }).catch((error) => {
-      console.error(error);
+      setModelNameTrail([...modelNameTrail, modelName, modelName]);
       setMessages(
         [...newMessages, { role: 'assistant', content: error }]
       );
@@ -63,12 +54,15 @@ function ChatTab({ apiHandler }: ChatTabProps) {
   return (
     <div className="ChatTab">
       <Chat 
+        modelNameTrail={modelNameTrail}
         messages={messages}
-        resetChat={resetChat}
         prompt={prompt}
+        model={model}
+        loading={loading}
+        resetChat={resetChat}
         setPrompt={setPrompt}
         sendPrompt={sendPrompt}
-        loading={loading}
+        setModel={setModel}
       />
     </div>
   );
