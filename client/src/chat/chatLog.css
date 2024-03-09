@@ -1,7 +1,7 @@
 .ChatLog {
   margin-bottom: 20px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 1.2rem;
   overflow-y: auto;
   min-height: 60vh;
@@ -10,4 +10,11 @@
   max-width: 75vw;
   margin: .5em auto auto auto;
   border: 1px solid black;
+}
+
+.ChatLog-infoText h1 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 300;
+  font-size: 1.75em;
+  margin: 10em auto auto auto;
 }

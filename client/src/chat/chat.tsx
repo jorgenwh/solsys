@@ -1,7 +1,7 @@
 import './chat.css'
 import ChatLog from './chatLog';
 import ChatInput from './chatInput';
-import { useState, useEffect, FC } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronsDown } from 'lucide-react';
 import ChatHeader from './chatHeader';
 

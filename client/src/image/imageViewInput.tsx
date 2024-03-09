@@ -1,49 +1,60 @@
-import { useEffect, useRef, FC } from 'react';
+import { useRef } from 'react';
 import { SendHorizontal } from 'lucide-react';
 import './imageViewInput.css'
 
 interface ImageViewInputProps {
+  loading: boolean;
   prompt: string;
   setPrompt: (prompt: string) => void;
   sendPrompt: () => void;
-  loading: boolean;
 }
 
-function ImageViewInput(
-  { prompt, setPrompt, sendPrompt, loading }
-  : ImageViewInputProps
-) {
+function ImageViewInput({ loading, setPrompt, sendPrompt }: ImageViewInputProps) {
 
-  const promptTextareaRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (promptTextareaRef.current) {
-      promptTextareaRef.current.style.height = 'auto';
-      let newHeight = promptTextareaRef.current.scrollHeight - parseInt(getComputedStyle(promptTextareaRef.current).paddingTop) - parseInt(getComputedStyle(promptTextareaRef.current).paddingBottom);
-      promptTextareaRef.current.style.height = `${newHeight}px`;
+  const clearContent = () => {
+    if (inputRef.current) {
+      inputRef.current.textContent = '';
     }
-  }, [prompt]);
+  }
 
-  useEffect(() => {
-    if (!loading && promptTextareaRef.current) {
-      promptTextareaRef.current.focus();
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendPrompt();
+      clearContent();
     }
-  }, [loading]);
+  }
+
+  const createTextArea = () => {
+    return (
+      <div className="ImageViewInput-textarea">
+        <div className="ImageViewInput-textarea-message-wrapper">
+          <div 
+            ref={inputRef}
+            className="ImageViewInput-textarea-message-text"
+            contentEditable
+            onInput={(e) => setPrompt(e.currentTarget.textContent || '')}
+            onKeyDown={onKeyDown} 
+          ></div>
+        </div>
+      </div>
+    );
+  }
+
+  const createSendButton = () => {
+    return (
+      <button onClick={() => { sendPrompt(); clearContent(); }}>
+        { <SendHorizontal/> }
+      </button>
+    );
+  }
 
   return (
     <div className={`ImageViewInput ${loading ? 'disabled' : ''}`}>
-      <textarea
-        className="ImageViewInput-textarea"
-        ref={promptTextareaRef}
-        value={prompt}
-        onChange={e => setPrompt(e.target.value)}
-        onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendPrompt()} 
-        placeholder=". . ."
-        disabled={loading}
-      />
-      <button onClick={sendPrompt}>{
-        <SendHorizontal/>
-      }</button>
+      {createTextArea()}
+      {createSendButton()}
     </div>
   );
 }

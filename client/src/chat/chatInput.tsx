@@ -1,14 +1,14 @@
-import { useEffect, useRef, FC } from 'react';
+import { useRef } from 'react';
 import { SendHorizontal } from 'lucide-react';
 import './chatInput.css'
 
 interface ChatInputProps {
+  loading: boolean;
   setPrompt: (prompt: string) => void;
   sendPrompt: () => void;
-  loading: boolean;
 }
 
-function ChatInput({ setPrompt, sendPrompt, loading }: ChatInputProps) {
+function ChatInput({ loading, setPrompt, sendPrompt }: ChatInputProps) {
 
   const inputRef = useRef<HTMLDivElement>(null);
 

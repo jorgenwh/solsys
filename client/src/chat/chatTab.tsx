@@ -1,4 +1,4 @@
-import { useState, useEffect, FC } from 'react';
+import { useState } from 'react';
 
 import Chat from './chat';
 import ApiHandler from '../api/apiHandler';

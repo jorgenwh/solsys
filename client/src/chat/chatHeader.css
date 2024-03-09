@@ -4,12 +4,22 @@
   margin: 0 .5em .5em .5em;
 }
 
-.ChatHeader-ModelSelect-container {
+.ChatHeader-label {
+  font-size: 1.3em;
+  margin: auto auto 1em auto;
+}
+
+.ChatHeader-interactable-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.ChatHeader-DropdownSelect-container {
   margin: auto auto auto 1em;
 }
 
-.Chat-label {
-  font-size: 1.3em;
+.ChatHeader-DropdownSelect-container * {
+  margin: auto .75em auto auto;
 }
 
 .ChatHeader-resetButton {
@@ -25,7 +35,7 @@
   align-items: center;
   justify-content: space-evenly;
 
-  margin: .5em 0 auto auto;
+  margin: .5em 1em auto auto;
 }
 
 .ChatHeader-resetButton:hover {

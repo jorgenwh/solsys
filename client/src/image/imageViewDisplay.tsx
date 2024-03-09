@@ -1,5 +1,5 @@
 import './imageViewDisplay.css'
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 interface ImageViewDisplayProps {
   url: string;
@@ -17,17 +17,16 @@ function ImageViewDisplay({ url, loading }: ImageViewDisplayProps) {
   }, [url]);
 
   const imageStyle = {
-    maxWidth: '65vw',
-    maxHeight: '65vh',
-    margin: '0 0 1em 0',
-    borderRadius: '10px'
+    maxWidth: '60vw',
+    maxHeight: '70vh',
+    borderRadius: '8px'
   };
 
   const createImageComponent = () => {
     if (loading) {
       return (
-        <div className="Loading">
-          <h1>Loading ...</h1>
+        <div className="ImageViewDisplay-infoText">
+          <h1>Loading...</h1>
         </div>
       );
     }
@@ -38,7 +37,7 @@ function ImageViewDisplay({ url, loading }: ImageViewDisplayProps) {
     } 
     else {
       return (
-        <div className="EmptyUrl">
+        <div className="ImageViewDisplay-infoText">
           <h1>Prompt to generate image</h1>
         </div>
       );

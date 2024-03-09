@@ -1,16 +1,21 @@
-.ModelSelect {
+.DropdownSelect {
 
 }
 
-.ModelSelect-label {
+.DropdownSelect-label {
   font-family: 'Roboto Mono', monospace;
   font-size: 1.4rem;
   margin: auto;
 }
 
-.ModelSelect-select{
+.DropdownSelect-select {
   padding: 5px 10px;
   font-family: 'Roboto Mono', monospace;
   font-size: 1.2rem;
   margin: auto auto auto 20px;
+}
+
+.DropdownSelect-select.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }

@@ -1,7 +1,6 @@
-import { useState, useEffect, FC } from 'react';
+import { useState } from 'react';
 
 import ApiHandler from '../api/apiHandler';
-import Settings from './settings/settings';
 import ImageView from './imageView';
 
 interface ImageTabProps {
@@ -9,7 +8,7 @@ interface ImageTabProps {
 }
 
 function ImageTab({ apiHandler }: ImageTabProps) {
-  const [models, setModels] = useState<string[]>(['dall-e-3']);
+  const [model, setModel] = useState<string>('dall-e-3');
   const [size, setSize] = useState<string>('1024x1024');
   const [quality, setQuality] = useState<string>('standard');
   const [prompt, setPrompt] = useState<string>('');
@@ -30,22 +29,32 @@ function ImageTab({ apiHandler }: ImageTabProps) {
     setLoading(true);
     setPrompt('');
 
-    //
+    const parameters = {size: size, quality: quality};
+    const response = apiHandler.imagePrompt(model, prompt, parameters);
+    response.then((url) => {
+      setUrl(url);
+      setLoading(false);
+    }).catch((error) => {
+      console.log("Error prompting image model: " + error);
+      setLoading(false);
+    });
   }
 
   return (
     <div className="imageTab">
       <ImageView 
+        loading={loading}
+        model={model}
+        size={size}
+        quality={quality}
         prompt={prompt}
+        url={url}
+        setModel={setModel}
+        setSize={setSize}
+        setQuality={setQuality}
         setPrompt={setPrompt}
         sendPrompt={sendPrompt}
-        url={url}
-        loading={loading}
         resetImageDisplay={resetImageDisplay}
-      />
-      <Settings
-        models={models}
-        setModels={setModels}
       />
     </div>
   );

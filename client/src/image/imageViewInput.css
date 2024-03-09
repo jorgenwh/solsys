@@ -1,5 +1,7 @@
 .ImageViewInput {
   display: flex;
+  flex-direction: row;
+  margin: auto auto 0 auto;
   align-items: center;
 }
 
@@ -9,27 +11,42 @@
 }
 
 .ImageViewInput-textarea {
-  flex: 1;
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  margin-right: 10px;
-  resize: none;
-  font-size: 1.2rem;
+  width: 100%;
+  margin: auto 0 auto 10px;
+}
+
+.ImageViewInput-textarea-message-wrapper {
+  width: 75vw;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 2px 5px;
+  text-align: start;
+}
+
+.ImageViewInput-textarea-message-text {
+  min-height: 1em;
+  width: 100%;
+  outline: none;
   overflow: hidden;
 }
 
 .ImageViewInput button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
   transition: background-color 0.2s;
-  font-size: 1rem;
+
+  font-size: 1em;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  padding: 5px 10px;
+  margin: auto 10px auto 10px;
+
+  align-items: center;
+  display: flex;
+  -ms-flex-align: center;
 }
 
 .ImageViewInput button:hover {
-  background-color: #0056b3;
+
 }

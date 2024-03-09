@@ -1,5 +1,4 @@
 import './message.css';
-import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
 interface MessageProps {

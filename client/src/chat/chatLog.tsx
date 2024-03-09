@@ -1,6 +1,5 @@
 import './chatLog.css'
-import React from 'react';
-import Message from './message'; // Assuming the correct file name is Message.tsx
+import Message from './message';
 
 interface MessageProps {
   role: string;
@@ -13,11 +12,24 @@ interface ChatLogProps {
 }
 
 function ChatLog({ modelNameTrail, messages }: ChatLogProps) {
+
+  const buildContent = () => {
+    if (messages.length === 0) {
+      return (
+        <div className="ChatLog-infoText">
+          <h1>Prompt to start a conversation</h1>
+        </div>
+      );
+    }
+
+    return messages.map((message, index) => (
+      <Message key={index} isOwn={index % 2 == 0} label={modelNameTrail[index]} content={message.content} />
+    ));
+  };
+
   return (
     <div className="ChatLog">
-      {messages.map((message, index) => (
-        <Message key={index} isOwn={index % 2 == 0} label={modelNameTrail[index]} content={message.content} />
-      ))}
+      { buildContent() }
       <div id="chatLogBottom"></div>
     </div>
   );
