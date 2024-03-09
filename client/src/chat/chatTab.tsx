@@ -35,11 +35,13 @@ function ChatTab({ apiHandler }: ChatTabProps) {
     setLoading(true);
     setPrompt('');
 
-    const response = apiHandler.chatPrompt(model, newMessages);
-    response.then((responses) => {
+    const promptType = 'text-completion';
+    const parameters = {type: promptType, model: model, messages: newMessages};
+    const response = apiHandler.promptServer(parameters);
+    response.then((response) => {
       setModelNameTrail([...modelNameTrail, modelName, modelName]);
       setMessages(
-        [...newMessages, { role: 'assistant', content: responses }]
+        [...newMessages, { role: 'assistant', content: response }]
       );
       setLoading(false);
     }).catch((error) => {

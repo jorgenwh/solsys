@@ -29,13 +29,13 @@ function ImageTab({ apiHandler }: ImageTabProps) {
     setLoading(true);
     setPrompt('');
 
-    const parameters = {size: size, quality: quality};
-    const response = apiHandler.imagePrompt(model, prompt, parameters);
+    const promptType = 'image-generation';
+    const parameters = {type: promptType, model: model, prompt: prompt, size: size, quality: quality};
+    const response = apiHandler.promptServer(parameters);
     response.then((url) => {
       setUrl(url);
       setLoading(false);
     }).catch((error) => {
-      console.log("Error prompting image model: " + error);
       setLoading(false);
     });
   }

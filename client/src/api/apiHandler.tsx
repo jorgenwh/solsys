@@ -1,48 +1,29 @@
 
 class ApiHandler {
-  _baseUrl: string = 'http://127.0.0.1:5000/';
+  _baseUrl: string = 'http://192.168.0.87:5000/';
 
   constructor() { }
 
-  async chatPrompt(model: string, messages: any): Promise<any> {
+  async promptServer(parameters: any): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      const response = fetch(this._baseUrl + "chat_prompt/", {
+      const response = fetch(this._baseUrl + "prompt/", {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: model,
-          messages: messages,
-        })
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify({ parameters, })
       });
       response.then(response => response.json()).then((data) => {
-        console.log(data.response);
-        resolve(data.response);
+        if (data.status === "error") {
+          console.log("Server responded with an error: " + data.response);
+          reject("Server responded with an error: " + data.response);
+        }
+        if (data.status === "success") {
+          console.log("Server responded with success: " + data.response);
+          resolve(data.response);
+        }
+        console.log("Server responded with an unknown status: " + data.status);
+        resolve("Server responded with an unknown status: " + data.status);
       }).catch((error) => {
-        reject(error.response);
-      });
-    });
-  }
-
-  async imagePrompt(model: string, prompt: string, parameters: any): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      const response = fetch(this._baseUrl + "image_prompt/", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: model,
-          prompt: prompt,
-          parameters: parameters,
-        })
-      });
-      response.then(response => response.json()).then((data) => {
-        console.log(data.response);
-        resolve(data.response);
-      }).catch((error) => {
-        reject(error.response);
+        reject(error);
       });
     });
   }
