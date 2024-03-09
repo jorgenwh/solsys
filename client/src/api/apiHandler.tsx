@@ -16,12 +16,14 @@ class ApiHandler {
           console.log("Server responded with an error: " + data.response);
           reject("Server responded with an error: " + data.response);
         }
-        if (data.status === "success") {
+        else if (data.status === "success") {
           console.log("Server responded with success: " + data.response);
           resolve(data.response);
         }
-        console.log("Server responded with an unknown status: " + data.status);
-        resolve("Server responded with an unknown status: " + data.status);
+        else {
+          console.log("Server responded with an unknown status: " + data.status);
+          resolve("Server responded with an unknown status: " + data.status);
+        }
       }).catch((error) => {
         reject(error);
       });
