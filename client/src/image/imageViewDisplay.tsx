@@ -38,7 +38,7 @@ function ImageViewDisplay({ url, loading }: ImageViewDisplayProps) {
     else {
       return (
         <div className="ImageViewDisplay-infoText">
-          <h1>Prompt to generate image</h1>
+          <h1>Prompt to generate an image</h1>
         </div>
       );
     }

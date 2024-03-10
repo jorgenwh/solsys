@@ -11,7 +11,7 @@ interface ImageViewProps {
   quality: string;
   prompt: string;
   url: string;
-  setModel: (model: string) => void;
+  changeModel: (model: string) => void;
   setSize: (model: string) => void;
   setQuality: (model: string) => void;
   setPrompt: (prompt: string) => void;
@@ -26,7 +26,7 @@ function ImageView({
   quality, 
   prompt, 
   url, 
-  setModel, 
+  changeModel, 
   setSize, 
   setQuality, 
   setPrompt, 
@@ -40,7 +40,7 @@ function ImageView({
         model={model}
         size={size}
         quality={quality}
-        setModel={setModel}
+        changeModel={changeModel}
         setSize={setSize}
         setQuality={setQuality}
         resetImageDisplay={resetImageDisplay}

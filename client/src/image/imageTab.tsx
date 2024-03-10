@@ -15,6 +15,14 @@ function ImageTab({ apiHandler }: ImageTabProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [url, setUrl] = useState<string>('');
 
+  const changeModel = (model: string) => {
+    setModel(model);
+    setSize('1024x1024');
+    if (model === 'dall-e-3') {
+      setQuality('standard');
+    }
+  }
+
   const resetImageDisplay = () => {
     setUrl('');
     setPrompt('');
@@ -49,7 +57,7 @@ function ImageTab({ apiHandler }: ImageTabProps) {
         quality={quality}
         prompt={prompt}
         url={url}
-        setModel={setModel}
+        changeModel={changeModel}
         setSize={setSize}
         setQuality={setQuality}
         setPrompt={setPrompt}

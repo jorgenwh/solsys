@@ -1,7 +1,7 @@
 .ChatInput {
   display: flex;
   flex-direction: row;
-  margin: auto auto 0 auto;
+  margin: 1em auto 0 auto;
   align-items: center;
 }
 
