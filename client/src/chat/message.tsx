@@ -68,26 +68,22 @@ const parseCodeAndText = (input: string): ContentBlock[] => {
 
 const buildMessageComponent = (block: ContentBlock) => {
   if (block.type === 'code') {
-    console.log("code block -> " + block.content)
     return (
       <CodeBlock language={block.language}>{block.content}</CodeBlock>
     );
   }
   else if (block.type === 'text') {
-    console.log("text block -> " + block.content)
     return (
       <div className="Message-text"><ReactMarkdown className="Message-text-mk">{block.content}</ReactMarkdown></div>
     );
   }
-  else if (block.type === 'inlineMath') {
-    console.log("inlineMath block -> " + block.content)
+  /*else if (block.type === 'inlineMath') {
     return (
       <p>
         <InlineMath math={block.content} />
       </p>
     );
-  }
-  console.log("markdown block -> " + block.content)
+  }*/
   return (
     <div className="Message-text"><ReactMarkdown className="Message-text-mk">{block.content}</ReactMarkdown></div>
   );
@@ -98,7 +94,6 @@ function Message({ isOwn, label, content }: MessageProps) {
 
   return (
     <div className={`Message ${isOwn ? 'is-own' : ''}`}>
-      <InlineMath math="f(x)=2x" />
       <div className="Message-label">{isOwn ? 'YOU' : label}</div>
       {blocks.map((block) => buildMessageComponent(block))}
     </div>
