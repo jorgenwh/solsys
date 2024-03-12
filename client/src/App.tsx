@@ -21,7 +21,7 @@ function AppHeader({ mode, setMode }: AppHeaderProps) {
         <button className={`AppHeader-imageButton${mode === 'image' ? ' clicked' : ''}`} onClick={() => setMode('image')}>Images</button>
         <button className={`AppHeader-settingsButton${mode === 'settings' ? ' clicked' : ''}`} onClick={() => setMode('settings')}>Settings</button>
       </div>
-      <h1 className="AppHeader-title">SOLSYS</h1>
+      <h1 className="AppHeader-title">SOLSYS!</h1>
     </div>
   );
 }
