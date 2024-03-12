@@ -6,7 +6,7 @@ class ApiHandler {
 
   async promptServer(parameters: any): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      const response = fetch('http://174.129.53.219:8080/greeting/'); 
+      const response = fetch('http://174.129.53.219:443/greeting/'); 
       response.then(response => response.json()).then((data) => {
         resolve(data.greeting);
       }).catch((error) => {
