@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import Chat from './chat';
 import ApiHandler from '../api/apiHandler';
-import { modelNameMap } from './modelOptions';
+import { MODEL_DISPLAY_NAMES } from '../models/modelLists';
 
 interface ChatTabProps {
   apiHandler: ApiHandler;
 }
 
 function ChatTab({ apiHandler }: ChatTabProps) {
-  const [model, setModel] = useState<string>('claude-3-opus-20240229');
+  const [model, setModel] = useState<string>('gpt-4-turbo');
   const [modelNameTrail, setModelNameTrail] = useState<string[]>([]);
   const [messages, setMessages] = useState<Array<{ role: string; content: string }>>([]);
   const [prompt, setPrompt] = useState<string>('');
@@ -27,21 +27,18 @@ function ChatTab({ apiHandler }: ChatTabProps) {
     if (trimmedPrompt === '') {
       return;
     }
-    const modelName = modelNameMap[model];
-
+    const modelName = MODEL_DISPLAY_NAMES[model];
     const newMessages = [...messages, { role: 'user', content: trimmedPrompt }];
-    setMessages(newMessages);
 
+    setMessages(newMessages);
     setLoading(true);
     setPrompt('');
 
-    const promptType = 'text-completion';
-    const parameters = {type: promptType, model: model, messages: newMessages};
-    const response = apiHandler.promptServer(parameters);
+    const response = apiHandler.generateText(newMessages, model);
     response.then((response) => {
       setModelNameTrail([...modelNameTrail, modelName, modelName]);
       setMessages(
-        [...newMessages, { role: 'assistant', content: response }]
+        [...newMessages, { role: 'assistant', content: response.choices[0].message.content }]
       );
       setLoading(false);
     }).catch((error) => {
@@ -58,7 +55,6 @@ function ChatTab({ apiHandler }: ChatTabProps) {
       <Chat 
         modelNameTrail={modelNameTrail}
         messages={messages}
-        prompt={prompt}
         model={model}
         loading={loading}
         resetChat={resetChat}

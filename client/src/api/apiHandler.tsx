@@ -1,44 +1,49 @@
+import OpenAIApiHandler from './openAiapiHandler';
+import { 
+  OPENAI_TEXT_MODELS,
+  OPENAI_IMAGE_MODELS 
+} from '../models/modelLists';
+
+type ApiKey = [string, string];
 
 class ApiHandler {
-  _baseUrl: string = 'http://192.168.0.87:5000/';
+  private openAiApiHandler: OpenAIApiHandler = new OpenAIApiHandler();
 
   constructor() { }
 
-  async promptServer(parameters: any): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      const response = fetch('https://174.129.53.219:8080/greeting/'); 
-      response.then(response => response.json()).then((data) => {
-        resolve(data.greeting);
-      }).catch((error) => {
-        console.log(error);
-        reject(error);
-      });
-    });
+  async initialize(apiKey: ApiKey) {
+    const [label, key] = apiKey;
 
-    return new Promise<any>((resolve, reject) => {
-      const response = fetch(this._baseUrl + "prompt/", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', },
-        body: JSON.stringify({ parameters, })
-      });
-      response.then(response => response.json()).then((data) => {
-        if (data.status === "error") {
-          console.log("Server responded with an error: " + data.response);
-          reject("Server responded with an error: " + data.response);
-        }
-        else if (data.status === "success") {
-          console.log("Server responded with success: " + data.response);
-          resolve(data.response);
-        }
-        else {
-          console.log("Server responded with an unknown status: " + data.status);
-          resolve("Server responded with an unknown status: " + data.status);
-        }
-      }).catch((error) => {
-        reject(error);
-      });
+    if (label === 'openai') {
+      this.openAiApiHandler.initialize(key);
+    }
+  }
+
+  async generateText(messages: any, model: string): Promise<any> {
+    if (OPENAI_TEXT_MODELS.includes(model)) {
+      return this.openAiApiHandler.generateText(messages, model);
+    }
+
+    return new Promise((reject) => {
+      reject("Model '" + model + "' is not supported for text generation");
+    });
+  }
+
+  async generateImage(
+    prompt: string, 
+    size: string, 
+    quality: string, 
+    model: string
+  ): Promise<any> {
+    if (OPENAI_IMAGE_MODELS.includes(model)) {
+      return this.openAiApiHandler.generateImage(prompt, size, quality, model);
+    }
+
+    return new Promise((reject) => {
+      reject("Model '" + model + "' is not supported for image generation");
     });
   }
 }
+
 
 export default ApiHandler;

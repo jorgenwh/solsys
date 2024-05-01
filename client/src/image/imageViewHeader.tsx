@@ -1,13 +1,13 @@
 import './imageViewHeader.css'
 import { RotateCcw } from 'lucide-react';
 
-import { 
-  modelOptions, 
-  modelNameMap, 
-  modelSizeOptions,
-  modelQualityOptions,
-} from './modelOptions';
-import DropdownSelect from '../common/dropdownSelect';
+import {
+  IMAGE_MODELS,
+  MODEL_DISPLAY_NAMES,
+  IMAGE_SIZE_OPTIONS,
+  IMAGE_QUALITY_OPTIONS,
+} from '../models/modelLists';
+import DropdownSelect from '../components/dropdownSelect';
 
 interface ImageViewHeaderProps {
   loading: boolean;
@@ -30,11 +30,10 @@ function ImageViewHeader({
   setQuality, 
   resetImageDisplay 
 }: ImageViewHeaderProps) {
-  const options = Object.keys(modelOptions);
-  const names = options.map(option => modelNameMap[option]);
+  const names = IMAGE_MODELS.map(option => MODEL_DISPLAY_NAMES[option]);
 
-  const sizeOptions = modelSizeOptions[model];
-  const qualityOptions = modelQualityOptions[model];
+  const sizeOptions = IMAGE_SIZE_OPTIONS[model];
+  const qualityOptions = IMAGE_QUALITY_OPTIONS[model];
 
   const buildDropdownSelects = () => {
     return (
@@ -42,7 +41,7 @@ function ImageViewHeader({
         <DropdownSelect
           label={"Model"}
           loading={loading}
-          options={options}
+          options={IMAGE_MODELS}
           names={names}
           value={model}
           setValue={changeModel}

@@ -1,9 +1,9 @@
 import './chatHeader.css'
-import '../common/dropdownSelect.css';
+import '../components/dropdownSelect.css';
 import { RotateCcw } from 'lucide-react';
 
-import { modelOptions, modelNameMap } from './modelOptions';
-import DropdownSelect from '../common/dropdownSelect';
+import { TEXT_MODELS, MODEL_DISPLAY_NAMES } from '../models/modelLists';
+import DropdownSelect from '../components/dropdownSelect';
 
 interface ChatHeaderProps {
   loading: boolean;
@@ -13,8 +13,7 @@ interface ChatHeaderProps {
 }
 
 function ChatHeader({ loading, model, setModel, resetChat }: ChatHeaderProps) {
-  const options = Object.keys(modelOptions);
-  const names = options.map(option => modelNameMap[option]);
+  const names = TEXT_MODELS.map(option => MODEL_DISPLAY_NAMES[option]);
 
   return (
     <div className="ChatHeader">
@@ -24,7 +23,7 @@ function ChatHeader({ loading, model, setModel, resetChat }: ChatHeaderProps) {
           <DropdownSelect
             label={"Model"}
             loading={loading}
-            options={options}
+            options={TEXT_MODELS}
             names={names}
             value={model}
             setValue={setModel}

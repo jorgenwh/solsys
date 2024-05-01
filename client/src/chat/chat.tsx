@@ -8,7 +8,6 @@ import ChatHeader from './chatHeader';
 interface ChatProps {
   modelNameTrail: string[];
   messages: any[];
-  prompt: string;
   model: string;
   loading: boolean;
   resetChat: () => void;
@@ -20,7 +19,6 @@ interface ChatProps {
 function Chat({ 
   modelNameTrail, 
   messages, 
-  prompt, 
   model, 
   loading, 
   resetChat, 

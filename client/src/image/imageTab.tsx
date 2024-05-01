@@ -2,6 +2,10 @@ import { useState } from 'react';
 
 import ApiHandler from '../api/apiHandler';
 import ImageView from './imageView';
+import { 
+  IMAGE_SIZE_OPTIONS, 
+  IMAGE_QUALITY_OPTIONS 
+} from '../models/modelLists';
 
 interface ImageTabProps {
   apiHandler: ApiHandler;
@@ -10,17 +14,15 @@ interface ImageTabProps {
 function ImageTab({ apiHandler }: ImageTabProps) {
   const [model, setModel] = useState<string>('dall-e-3');
   const [size, setSize] = useState<string>('1024x1024');
-  const [quality, setQuality] = useState<string>('standard');
+  const [quality, setQuality] = useState<string>('hd');
   const [prompt, setPrompt] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [url, setUrl] = useState<string>('');
 
   const changeModel = (model: string) => {
     setModel(model);
-    setSize('1024x1024');
-    if (model === 'dall-e-3') {
-      setQuality('standard');
-    }
+    setSize(IMAGE_SIZE_OPTIONS[model][0]);
+    setQuality(IMAGE_QUALITY_OPTIONS[model][0]);
   }
 
   const resetImageDisplay = () => {
@@ -37,9 +39,7 @@ function ImageTab({ apiHandler }: ImageTabProps) {
     setLoading(true);
     setPrompt('');
 
-    const promptType = 'image-generation';
-    const parameters = {type: promptType, model: model, prompt: prompt, size: size, quality: quality};
-    const response = apiHandler.promptServer(parameters);
+    const response = apiHandler.generateImage(prompt, size, quality, model);
     response.then((url) => {
       setUrl(url);
       setLoading(false);

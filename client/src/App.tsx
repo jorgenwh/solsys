@@ -4,22 +4,19 @@ import './App.css';
 import ApiHandler from './api/apiHandler';
 import ChatTab from './chat/chatTab';
 import ImageTab from './image/imageTab';
-import SettingsTab from './settings/settingsTab';
 
 
 interface AppHeaderProps {
-  mode: 'chat' | 'image' | 'settings';
-  setMode: (mode: 'chat' | 'image' | 'settings') => void;
+  mode: 'chat' | 'image';
+  setMode: (mode: 'chat' | 'image') => void;
 }
 
 function AppHeader({ mode, setMode }: AppHeaderProps) {
-
   return (
     <div className="AppHeader">
       <div className="AppHeader-buttons-container">
         <button className={`AppHeader-chatButton${mode === 'chat' ? ' clicked' : ''}`} onClick={() => setMode('chat')}>Chat</button>
         <button className={`AppHeader-imageButton${mode === 'image' ? ' clicked' : ''}`} onClick={() => setMode('image')}>Images</button>
-        <button className={`AppHeader-settingsButton${mode === 'settings' ? ' clicked' : ''}`} onClick={() => setMode('settings')}>Settings</button>
       </div>
       <h1 className="AppHeader-title">SOLSYS!</h1>
     </div>
@@ -28,10 +25,11 @@ function AppHeader({ mode, setMode }: AppHeaderProps) {
 
 
 const apiHandler = new ApiHandler();
+apiHandler.initialize(['openai', process.env.REACT_APP_OPENAI_API_KEY || '']);
 
 
 function App() {
-  const [mode, setMode] = React.useState<'chat' | 'image' | 'settings'>('chat');
+  const [mode, setMode] = React.useState<'chat' | 'image'>('chat');
 
   let content;
   switch (mode) {
@@ -46,12 +44,6 @@ function App() {
       content = (
         <ImageTab
           apiHandler={apiHandler}
-        />
-      );
-      break;
-    case 'settings':
-      content = (
-        <SettingsTab 
         />
       );
       break;
